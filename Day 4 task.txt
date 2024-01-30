@@ -1,0 +1,248 @@
+﻿What is anonymous function?
+Answer:
+* Anonymous functions are used for short period of time. 
+* They do not have name , this is the reason it is called as anonymous functions.
+* The function is stored in a variable and it can be called like any function created.
+* The function is not processed until the interpreter gets to the that statement. This means we cannot call this function before the interpreter has discovered it.
+* This also means that any code that appears up to that point could potentially alter what goes on inside this function.
+Example : 
+  var area = function(width, height){
+        return width*height;
+        };
+ var size = area(3,4);
+What are Immediately Invoked Function Expressions ?
+Answer:
+* Pronounced as “iffy”, these functions are not given a name. Instead, they are executed once as the interpreter comes across them.
+* IIFEs are commonly used as a wrapper around a set of code. Any variables declared within that anonymous function are effectively protected from variables in other scripts that might have the same name. 
+* As an argument when a function is called to calculate a value for that function.
+* To assign the value of a property to an object.
+Example : 
+  var area = ( function() {
+        var width = 3;
+        var height = 2;
+        return width * height;
+        } () );
+Question : what is Arrow functions ?
+Answer : An arrow function expression is compact alternative to a traditional function expression, with some semantic differences and deliberate limitations in usage:
+* The functions cannot be used as methods.
+* These functions cannot be used as constructors calling them new which throws an error.
+1.a). Print odd numbers in an array using anonymous function & IFFE
+Answer: 
+// arr is an array which contains combinations of even and odd numbers
+ let arr = [12,23,34,45,56,67,78,89,90];
+        // anonymous function declaration
+let findOdd = function (arr){
+let oddArr = [];
+ for(let I = 0; I < arr.length; I++)
+{        
+        if(arr[I] % 2 !== 0)
+                { 
+                        oddArr.push(arr[i]);
+                }
+        }
+ return oddArr;
+};
+let result = findOdd(arr);
+console.log(result);
+Same problem Using IFFE
+ let arr = [12,23,34,45,56,67,78,89,90];
+ let findOdd = ( function(arr){
+        let oddArr = [];
+        for(let I = 0; I < arr.length; I++)
+        {
+// checks whether it is even or odd then pushes element to array if odd.
+                if(arr[I] % 2 !== 0)
+                        {
+                                oddArr.push(arr[i]);
+                        }
+        }
+ console.log(oddArr);
+// arr is an array which is declared out the function scope and it is taken as argument.
+} ) (arr);
+1.b) Convert all the strings to title caps in a string array !
+let arr = ["ashu", "chintu"];
+//below function will take array as argument and loop will take one element of array and convert it into caps and push it into the new array.
+let convert = function (arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let temp = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    newArr.push(temp);
+  }
+  return newArr;
+};
+console.log(convert(arr));
+Same problem using IIFE
+let arr = ["ashu", "chintu"];
+let convert = (function () {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let temp = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    newArr.push(temp);
+  }
+  console.log(newArr);
+})(arr);
+1.c) Sum of all numbers in an array !
+//this anonymous function will take an array of elements and add it to sum variable.
+let addArr = function (arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum;
+};
+console.log(addArr(arr));
+//same problem with IIFE
+let arr = [1, 2, 3, 4, 5];
+let addArr = (function () {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  console.log(sum);
+})(arr);
+1.d) Return all the prime numbers in an array !
+Using anonymous function
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let findPrime = function () {
+  let primeArr = [];
+//first for loop will take the array elements
+  for (let i = 0; i < arr.length; i++) {
+    let count = 0;
+// second for loop will check from 0 to specific element 
+    for (let j = 1; j <= arr[i]; j++) {
+      if (arr[i] % j === 0) {
+//here it will get count of multiples of that number if it is exactly two then it is prime number
+        count++;
+      }
+    }
+    if (count > 1 && count < 3) {
+      primeArr.push(arr[i]);
+    }
+  }
+  return primeArr;
+};
+console.log(findPrime(arr));
+Same with IIFE
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let findPrime = (function () {
+  let primeArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let count = 0;
+    for (let j = 1; j <= arr[i]; j++) {
+      if (arr[i] % j === 0) {
+        count++;
+      }
+    }
+    if (count === 2) {
+      primeArr.push(arr[i]);
+    }
+  }
+  console.log(primeArr);
+})(arr);
+1.e) Return all the palindromes in an array !
+Using anonymous function 
+var arr = [121, 123, 323, 434, 56765];
+// this function will rotate the number from backwards
+let isPalindrome = function (oneElement) {
+  let element = oneElement.toString();
+  let newelement = "";
+  for (let i = element.length - 1; i >= 0; i--) {
+    newelement += element[i];
+  }
+  let newNumber = Number(newelement);
+  return newNumber;
+};
+// this function will check whether number is palindrome or not
+function checkPalindromeArr(arr) {
+  let palindromeArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let element = isPalindrome(arr[i]);
+    if (arr[i] === element) {
+      palindromeArr.push(element);
+    }
+  }
+  return palindromeArr;
+}
+I am confused on framing the code in IIFE for palindrome ! So I am not writing only this program . 
+1.f) Return median of two sorted arrays of the same size !
+Using anonymous function  
+let arr1 = [1, 23, 34, 32];
+let arr2 = [2, 32, 43, 38];
+let sortArr = function (arr) {
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (arr[i] < arr[j]) {
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+};
+// calling twice the above function for sorting the arrays
+let firstSortedArr = sortArr(arr1);
+let secondSortedArr = sortArr(arr2);
+//using spread operator for concatination of arrays
+let finalArr = [...firstSortedArr, ...secondSortedArr];
+let finalSortedArr = sortArr(finalArr);
+// finding the median 
+let median = 0;
+if (finalSortedArr.length % 2 === 0) {
+  let temp = Math.floor(finalSortedArr.length / 2);
+  median = finalSortedArr[temp] + finalSortedArr[temp - 1];
+  console.log(median);
+} else {
+  let temp = finalSortedArr.length / 2;
+  median = finalSortedArr[temp];
+  console.log(median);
+}
+1.g) Remove duplicates from an array
+Using anonymous function 
+let arr = [11, 11, 22, 22, 33, 44, 55];
+let removeDuplicate = function (arr) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    for (let j = i - 1; j >= 0; j--) {
+      if (arr[i] === arr[j]) {
+        let temp = j;
+        arr.splice(temp, 1);
+      }
+    }
+  }
+  return arr;
+};
+console.log(removeDuplicate(arr));
+Using IFFE same problem
+let removeDuplicate = (function () {
+// first for loop will loop all elements in array from last to first
+  for (let i = arr.length - 1; i >= 0; i--) {
+// second for loop will iterate from 2nd last element to 0 index 
+    for (let j = i - 1; j >= 0; j--) {
+// the if condition will check if same element is there , if it is then it removes using splice function.
+      if (arr[i] === arr[j]) {
+        let temp = j;
+        arr.splice(temp, 1);
+      }
+    }
+  }
+  console.log(arr);
+})(arr);
+1.h) Rotate an array by k times !
+let arr = [1, 2, 3, 4];
+let rotations = 2;
+let rotate = function (arr) {
+  for (let i = 0; i < rotations; i++) {
+    let temp = arr.pop(); // Remove the last element and store it in a temporary variable
+    arr.unshift(temp); // Add the removed element to the beginning of the array
+  }
+  return arr;
+};
+console.log(rotate(arr));
+//using IFFE
+let rotate = (function (arr, rotations) {
+  for (let i = 0; i < rotations; i++) {
+    let temp = arr.pop();
+    arr.unshift(temp);
+  }
+  console.log(arr);
+})(arr, 2);
